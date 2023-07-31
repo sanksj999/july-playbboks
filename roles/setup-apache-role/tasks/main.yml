@@ -1,0 +1,21 @@
+---
+# tasks file for setup-apache-role
+- name: install pkg
+  yum:
+     name: httpd
+     state: installed
+  when: ansible_os_family == "RedHat"
+  notify: start httpd service
+
+- name: install apache2 pkg
+  yum:
+    name: apache2 
+    state: installed
+  when: ansible_os_family == "Debian"
+  notify: start apache2 service
+
+- name: copy index file
+  copy:
+     src: /home/sank/index.html
+     dest: /var/www/html
+     mode: 0666    

@@ -1,0 +1,9 @@
+---
+- name: My test playbook
+  hosts: all
+  become: true
+  tasks: 
+   - name: creating a file
+     file: 
+        path: /home/sank/demofile
+        state: touch 
